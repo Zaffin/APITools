@@ -8,7 +8,9 @@ namespace APIToolsManaged.Services
 {
     public interface IAPITools
     {
-        void BlankUnblankAllNonSolids(bool unblank);
+        int BlankUnblankAllNonSolids(bool unblank);
+
+        int SelectAllSolids();
 
         double[] GetSolidExtents();
     }

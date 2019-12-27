@@ -59,6 +59,7 @@ namespace APIToolsManaged.ViewModels
 
             BlankNonSolidsCommand = new DelegateCommand(OnBlankNonSolidsCommand);
             UnblankNonSolidsCommand = new DelegateCommand(OnUnblankNonSolidsCommand);
+            SelectAllSolidsCommand = new DelegateCommand(OnSelectAllSolidsCommand);
             SelectSolidCommand = new DelegateCommand(OnSelectSolidCommand);
         }
 
@@ -69,6 +70,8 @@ namespace APIToolsManaged.ViewModels
         public ICommand BlankNonSolidsCommand { get; }
 
         public ICommand UnblankNonSolidsCommand { get; }
+        
+        public ICommand SelectAllSolidsCommand { get; }
 
         public ICommand SelectSolidCommand { get; }
 
@@ -84,6 +87,11 @@ namespace APIToolsManaged.ViewModels
         private void OnUnblankNonSolidsCommand(object parameter)
         {
             apiTools.BlankUnblankAllNonSolids(true);
+        }
+
+        private void OnSelectAllSolidsCommand(object parameter)
+        {
+            apiTools.SelectAllSolids();
         }
 
         private void OnSelectSolidCommand(object parameter)

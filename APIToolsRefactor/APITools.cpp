@@ -9,29 +9,28 @@ APIToolsNative::APITools::~APITools()
 {
 }
 
-void APIToolsNative::APITools::BlankUnblankAllNonSolids(bool unblank)
+
+int APIToolsNative::APITools::BlankUnblankAllNonSolids(bool unblank)
 {
-	bool statusChanged = false;
+	int numberOfEntitesModified = 0;
 
-	DB_LIST_ENT_PTR entityPointer = db_start;
-
-	set_clr_sel_bits(0, 
-		             SELECT_BIT, 
-		             0, 
-		             ALIVE_BIT, 
-		             ALL_ENTITIES_MASK, 
-		             true);
+	auto entityPointer = db_start;
 
 	while (entityPointer != nullptr) 
 	{	
 		if (entityPointer->eptr->id != SOLID_ID)
 		{	
-			statusChanged = true;
+			numberOfEntitesModified++;
 
 			if (unblank)
+			{
 				sel_bit_turn_off(entityPointer->eptr, BLANK_BIT);
+				entityPointer->eptr->color = MC_RED;
+			}
 			else
+			{
 				sel_bit_turn_on(entityPointer->eptr, BLANK_BIT);
+			}
 
 			write_ent_sel(entityPointer->eptr, entityPointer->eptr->eptr);
 		}
@@ -39,8 +38,36 @@ void APIToolsNative::APITools::BlankUnblankAllNonSolids(bool unblank)
 		entityPointer = entityPointer->next;
 	}
 
-	if (statusChanged)
+	if (numberOfEntitesModified > 0)
 		repaint_graphics();
+
+	return numberOfEntitesModified;
+}
+
+int APIToolsNative::APITools::SelectAllSolids()
+{
+	int numberOfSolidsSelected = 0;
+
+	auto entityPointer = db_start;
+
+	while (entityPointer != nullptr)
+	{
+		if (entityPointer->eptr->id == SOLID_ID)
+		{
+			numberOfSolidsSelected++;
+
+			sel_bit_turn_on(entityPointer->eptr, SELECT_BIT);
+
+			write_ent_sel(entityPointer->eptr, entityPointer->eptr->eptr);
+		}
+
+		entityPointer = entityPointer->next;
+	}
+
+	if (numberOfSolidsSelected > 0)
+		repaint_graphics();
+
+	return numberOfSolidsSelected;
 }
 
 array<System::Double>^ APIToolsNative::APITools::GetSolidExtents()

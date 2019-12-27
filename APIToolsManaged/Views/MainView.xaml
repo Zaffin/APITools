@@ -18,6 +18,9 @@
             <RowDefinition Height="39"/>
             <RowDefinition Height="39"/>
             <RowDefinition Height="39"/>
+            <RowDefinition Height="39"/>
+            <RowDefinition Height="39"/>
+            <RowDefinition Height="39"/>
             <RowDefinition Height="1*"/>
             <RowDefinition Height="10"/>
         </Grid.RowDefinitions>
@@ -48,8 +51,18 @@
                 Content ="Unblank all non solids"
                 Command="{Binding UnblankNonSolidsCommand}"/>
 
+        <Button x:Name="SelectSolidsButton"
+                Grid.Row="3"
+                Grid.Column="1"
+                Grid.ColumnSpan="2"
+                VerticalAlignment="Stretch"
+                HorizontalAlignment="Stretch"
+                Margin="0,5,0,5"
+                Content ="Select all solids"
+                Command="{Binding SelectAllSolidsCommand}"/>
+
         <TextBlock x:Name="GetSolidsExtentsTextBlock"
-                   Grid.Row="3"
+                   Grid.Row="5"
                    Grid.Column="1"
                    VerticalAlignment="Center"
                    HorizontalAlignment="Stretch"                 
@@ -57,19 +70,19 @@
                    Text="Find the extents of a solid"/>
 
         <Button x:Name="SelectSolidButton"
-                Grid.Row="3"
+                Grid.Row="5"
                 Grid.Column="2"
                 VerticalAlignment="Center"
                 HorizontalAlignment="Right"
-                Height="35"
-                Width="35"
+                Height="29"
+                Width="29"
                 Command="{Binding SelectSolidCommand}"
                 CommandParameter="{Binding ElementName=DebugWindow}">
             <Image Source="/APIToolsManaged;component/ViewModels/Icons/SelectCursor24.png"/>
         </Button>
 
         <TextBlock x:Name="GetSolidsMinZTextBlock"
-                   Grid.Row="4"
+                   Grid.Row="6"
                    Grid.Column="1"
                    Grid.ColumnSpan="2"
                    VerticalAlignment="Center"
@@ -80,7 +93,7 @@
                           FallbackValue=-99999.999}"/>
         
         <TextBlock x:Name="GetSolidsMaxZTextBlock"
-                   Grid.Row="5"
+                   Grid.Row="7"
                    Grid.Column="1"
                    Grid.ColumnSpan="2"
                    VerticalAlignment="Center"

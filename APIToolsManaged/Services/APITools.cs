@@ -4,19 +4,27 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-using Mastercam.IO;
-using Mastercam.Database;
-using Mastercam.Database.Types;
+//using Mastercam.IO;
+//using Mastercam.Database;
+//using Mastercam.Database.Types;
 
 namespace APIToolsManaged.Services
 {
     class APITools : IAPITools
     {
-        public void BlankUnblankAllNonSolids(bool unblank)
+        public int BlankUnblankAllNonSolids(bool unblank)
         {
             using (var apiTools = new APIToolsNative.APITools())
             {
-                apiTools.BlankUnblankAllNonSolids(unblank);
+                return apiTools.BlankUnblankAllNonSolids(unblank);
+            }
+        }
+
+        public int SelectAllSolids()
+        {
+            using (var apiTools = new APIToolsNative.APITools())
+            {
+                return apiTools.SelectAllSolids();
             }
         }
 
@@ -27,5 +35,6 @@ namespace APIToolsManaged.Services
                 return apiTools.GetSolidExtents();
             }
         }
+
     }
 }
