@@ -1,0 +1,94 @@
+﻿<Window x:Name="DebugWindow"
+        x:Class="APIToolsManaged.Views.MainView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+        xmlns:local="clr-namespace:APIToolsManaged.Views"
+        mc:Ignorable="d"
+        Height="600"
+        Width="400" 
+        ResizeMode="NoResize"
+        Title="API Tools Refactor - Debug">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="10"/>
+            <RowDefinition Height="39"/>
+            <RowDefinition Height="39"/>
+            <RowDefinition Height="39"/>
+            <RowDefinition Height="39"/>
+            <RowDefinition Height="39"/>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="10"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="10"/>
+            <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width="35"/>
+            <ColumnDefinition Width="10"/>
+        </Grid.ColumnDefinitions>
+
+        <Button x:Name="BlankNonSolidsButton"
+                Grid.Row="1"
+                Grid.Column="1"
+                Grid.ColumnSpan="2"
+                VerticalAlignment="Stretch"
+                HorizontalAlignment="Stretch"
+                Margin="0,5,0,5"
+                Content ="Blank all non solids"
+                Command="{Binding BlankNonSolidsCommand}"/>
+
+        <Button x:Name="UnlankNonSolidsButton"
+                Grid.Row="2"
+                Grid.Column="1"
+                Grid.ColumnSpan="2"
+                VerticalAlignment="Stretch"
+                HorizontalAlignment="Stretch"
+                Margin="0,5,0,5"
+                Content ="Unblank all non solids"
+                Command="{Binding UnblankNonSolidsCommand}"/>
+
+        <TextBlock x:Name="GetSolidsExtentsTextBlock"
+                   Grid.Row="3"
+                   Grid.Column="1"
+                   VerticalAlignment="Center"
+                   HorizontalAlignment="Stretch"                 
+                   Margin="0,5,0,5"
+                   Text="Find the extents of a solid"/>
+
+        <Button x:Name="SelectSolidButton"
+                Grid.Row="3"
+                Grid.Column="2"
+                VerticalAlignment="Center"
+                HorizontalAlignment="Right"
+                Height="35"
+                Width="35"
+                Command="{Binding SelectSolidCommand}"
+                CommandParameter="{Binding ElementName=DebugWindow}">
+            <Image Source="/APIToolsManaged;component/ViewModels/Icons/SelectCursor24.png"/>
+        </Button>
+
+        <TextBlock x:Name="GetSolidsMinZTextBlock"
+                   Grid.Row="4"
+                   Grid.Column="1"
+                   Grid.ColumnSpan="2"
+                   VerticalAlignment="Center"
+                   HorizontalAlignment="Stretch"                  
+                   Margin="25,5,0,5"
+                   Text="{Binding SolidsMinZ,
+                          StringFormat={}Min Z:{0:#.000},
+                          FallbackValue=-99999.999}"/>
+        
+        <TextBlock x:Name="GetSolidsMaxZTextBlock"
+                   Grid.Row="5"
+                   Grid.Column="1"
+                   Grid.ColumnSpan="2"
+                   VerticalAlignment="Center"
+                   HorizontalAlignment="Stretch"                  
+                   Margin="25,5,0,5"
+                   Text="{Binding SolidsMaxZ,
+                          StringFormat={}Max Z:{0:#.000},
+                          FallbackValue=99999.999}"/>
+
+    </Grid>
+</Window>
