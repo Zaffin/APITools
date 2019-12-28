@@ -13,7 +13,7 @@ namespace APIToolsNative
 		//int GetSolidInfo(double a, double b, int c, int d);
 		//int CreateCurvesOnSolid(double a, double b, int c, int d);
 		//int CreateSilhouetteBoundary(int body);
-		//int BreakSplines(int level1, int level2, int levelset1, int levelset2, int levelset3, int levelset4);
+		int BreakAllSplinesIntoLinesAndArcs();
 		//int DeleteSilhBndPktz(int level1, int level2);
 	    
 		array<System::Double>^ GetSolidExtents();

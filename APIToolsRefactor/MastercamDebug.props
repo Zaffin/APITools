@@ -17,7 +17,7 @@
     </ClCompile>
     <Link>
       <AdditionalLibraryDirectories>$(MastercamSDK)x64\debug;$(MastercamSDK)3rdParty\BCGCBPro\libx64;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>mcmill.lib;mastercam.lib;mccore.lib;MCGeomSld.lib;MCCAD.lib;MCCADUtil.lib;UICtrls.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>mcmill.lib;mastercam.lib;mccore.lib;MCGeomSld.lib;MCCurveSurfGeom.lib;MCCAD.lib;MCCADUtil.lib;UICtrls.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <ProjectReference>
       <LinkLibraryDependencies>false</LinkLibraryDependencies>

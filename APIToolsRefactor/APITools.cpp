@@ -38,7 +38,7 @@ int APIToolsNative::APITools::BlankUnblankAllNonSolids(bool unblank)
 		entityPointer = entityPointer->next;
 	}
 
-	if (numberOfEntitesModified > 0)
+	if (numberOfEntitesModified)
 		repaint_graphics();
 
 	return numberOfEntitesModified;
@@ -64,10 +64,36 @@ int APIToolsNative::APITools::SelectAllSolids()
 		entityPointer = entityPointer->next;
 	}
 
-	if (numberOfSolidsSelected > 0)
+	if (numberOfSolidsSelected)
 		repaint_graphics();
 
 	return numberOfSolidsSelected;
+}
+
+int APIToolsNative::APITools::BreakAllSplinesIntoLinesAndArcs()
+{
+	short viewNumber = 0;
+	int numberOfSplinesFound = 0;
+
+	auto entityPointer = db_start;
+
+	while (entityPointer != nullptr)
+	{
+		if (entityPointer->eptr->id & SPLINE_ID)
+		{
+			numberOfSplinesFound++;
+
+			EptrArray newEptrs;
+			BreakSplineIntoLineAndArcs(2, .005, entityPointer->eptr, newEptrs, viewNumber);
+		}
+
+		entityPointer = entityPointer->next;
+	}
+
+	if (numberOfSplinesFound)
+		repaint_graphics();
+
+	return numberOfSplinesFound;
 }
 
 array<System::Double>^ APIToolsNative::APITools::GetSolidExtents()

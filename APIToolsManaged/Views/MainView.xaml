@@ -21,6 +21,7 @@
             <RowDefinition Height="39"/>
             <RowDefinition Height="39"/>
             <RowDefinition Height="39"/>
+            <RowDefinition Height="39"/>
             <RowDefinition Height="1*"/>
             <RowDefinition Height="10"/>
         </Grid.RowDefinitions>
@@ -61,8 +62,18 @@
                 Content ="Select all solids"
                 Command="{Binding SelectAllSolidsCommand}"/>
 
+        <Button x:Name="BreakAllSplinesButton"
+                Grid.Row="4"
+                Grid.Column="1"
+                Grid.ColumnSpan="2"
+                VerticalAlignment="Stretch"
+                HorizontalAlignment="Stretch"
+                Margin="0,5,0,5"
+                Content ="Break all splines into lines and arcs"
+                Command="{Binding BreakAllSplinesCommand}"/>
+
         <TextBlock x:Name="GetSolidsExtentsTextBlock"
-                   Grid.Row="5"
+                   Grid.Row="7"
                    Grid.Column="1"
                    VerticalAlignment="Center"
                    HorizontalAlignment="Stretch"                 
@@ -70,7 +81,7 @@
                    Text="Find the extents of a solid"/>
 
         <Button x:Name="SelectSolidButton"
-                Grid.Row="5"
+                Grid.Row="7"
                 Grid.Column="2"
                 VerticalAlignment="Center"
                 HorizontalAlignment="Right"
@@ -82,7 +93,7 @@
         </Button>
 
         <TextBlock x:Name="GetSolidsMinZTextBlock"
-                   Grid.Row="6"
+                   Grid.Row="8"
                    Grid.Column="1"
                    Grid.ColumnSpan="2"
                    VerticalAlignment="Center"
@@ -93,7 +104,7 @@
                           FallbackValue=-99999.999}"/>
         
         <TextBlock x:Name="GetSolidsMaxZTextBlock"
-                   Grid.Row="7"
+                   Grid.Row="9"
                    Grid.Column="1"
                    Grid.ColumnSpan="2"
                    VerticalAlignment="Center"

@@ -12,6 +12,8 @@ namespace APIToolsManaged.Services
 
         int SelectAllSolids();
 
+        int BreakAllSplinesIntoLinesAndArcs();
+
         double[] GetSolidExtents();
     }
 }

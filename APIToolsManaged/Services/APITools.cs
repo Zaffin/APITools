@@ -28,6 +28,14 @@ namespace APIToolsManaged.Services
             }
         }
 
+        public int BreakAllSplinesIntoLinesAndArcs()
+        {
+            using (var apiTools = new APIToolsNative.APITools())
+            {
+                return apiTools.BreakAllSplinesIntoLinesAndArcs();
+            }
+        }
+
         public double[] GetSolidExtents()
         {
             using (var apiTools = new APIToolsNative.APITools())
@@ -35,6 +43,5 @@ namespace APIToolsManaged.Services
                 return apiTools.GetSolidExtents();
             }
         }
-
     }
 }
