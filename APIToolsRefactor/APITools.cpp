@@ -1,5 +1,6 @@
 #include "StdAfx.h"
 #include "APITools.h"
+#include "SilhouetteBoundaryImports.h"
 
 APIToolsNative::APITools::APITools()
 {
@@ -68,6 +69,51 @@ int APIToolsNative::APITools::SelectAllSolids()
 		repaint_graphics();
 
 	return numberOfSolidsSelected;
+}
+
+int APIToolsNative::APITools::CreateSilhouetteBoundary()
+{
+	ent selectedSolid = {};
+
+	auto bodyID = sld_select_one_solid(L"Select a solid", &selectedSolid);
+
+	if (selectedSolid.eptr != nullptr)
+	{
+		sel_bit_turn_on(&selectedSolid, SELECT_BIT);
+
+		EptrArray boundaryEptrs;
+
+		p_3d startPoint;
+		startPoint.Set(0, 0, 0);
+
+		p_3d endPoint;
+		endPoint.Set(1, 0, 0);
+
+		l_3d rotationAxis{ startPoint, endPoint };
+
+		hmmSiluetBndyDat boundarySettings = {};
+		boundarySettings.filterTol = .001;
+		boundarySettings.smoovAngle = 1;
+		boundarySettings.tessTol = .001;
+		boundarySettings.rotAxis = rotationAxis;
+		boundarySettings.lookAhead = 100;
+		boundarySettings.profileType = 2;
+		boundarySettings.arcFitXY = true;
+		boundarySettings.arcFitXZ = true;
+		boundarySettings.arcFitYZ = true;
+		boundarySettings.splineFit = true;
+		boundarySettings.rotAxis3D = false;
+		boundarySettings.viewNum = 1;
+		boundarySettings.shiftedOrigin = false;
+
+		CreateSilhouetteBoundaryGeometryMS(&boundarySettings, boundaryEptrs);
+
+		return boundaryEptrs.GetSize();
+	}
+	else
+	{
+		return 0;
+	}
 }
 
 int APIToolsNative::APITools::BreakAllSplinesIntoLinesAndArcs()

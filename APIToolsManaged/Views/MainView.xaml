@@ -72,6 +72,17 @@
                 Content ="Break all splines into lines and arcs"
                 Command="{Binding BreakAllSplinesCommand}"/>
 
+        <Button x:Name="CreateSilhouetteBoundaryButton"
+                Grid.Row="5"
+                Grid.Column="1"
+                Grid.ColumnSpan="2"
+                VerticalAlignment="Stretch"
+                HorizontalAlignment="Stretch"
+                Margin="0,5,0,5"
+                Content ="Create silhouette boundary"
+                Command="{Binding CreateSilhouetteBoundaryCommand}"
+                CommandParameter="{Binding ElementName=DebugWindow}"/>
+
         <TextBlock x:Name="GetSolidsExtentsTextBlock"
                    Grid.Row="7"
                    Grid.Column="1"
@@ -102,7 +113,7 @@
                    Text="{Binding SolidsMinZ,
                           StringFormat={}Min Z:{0:#.000},
                           FallbackValue=-99999.999}"/>
-        
+
         <TextBlock x:Name="GetSolidsMaxZTextBlock"
                    Grid.Row="9"
                    Grid.Column="1"
@@ -115,4 +126,5 @@
                           FallbackValue=99999.999}"/>
 
     </Grid>
+
 </Window>

@@ -14,6 +14,8 @@ namespace APIToolsManaged.Services
 
         int BreakAllSplinesIntoLinesAndArcs();
 
+        int CreateSilhouetteBoundary();
+
         double[] GetSolidExtents();
     }
 }

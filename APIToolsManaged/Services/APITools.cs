@@ -36,6 +36,14 @@ namespace APIToolsManaged.Services
             }
         }
 
+        public int CreateSilhouetteBoundary()
+        {
+            using (var apiTools = new APIToolsNative.APITools())
+            {
+                return apiTools.CreateSilhouetteBoundary();
+            }
+        }
+
         public double[] GetSolidExtents()
         {
             using (var apiTools = new APIToolsNative.APITools())
@@ -43,5 +51,6 @@ namespace APIToolsManaged.Services
                 return apiTools.GetSolidExtents();
             }
         }
+
     }
 }

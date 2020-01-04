@@ -2,7 +2,7 @@
 // Copyright (c) 2016 CNC Software, Inc. All rights reserved.
 // </copyright>
 // <summary>Declares the items imported directly from Mastercam</summary>
-//#include "api_tools.h"
+#include "StdAfx.h"
 #pragma once
 
 #pragma comment(lib, "MCCAD.lib")
@@ -37,5 +37,5 @@ struct hmmSiluetBndyDat
 /// <param name="eptrs">   [out] The list of entity db eptrs of the boundary geometries that were created. </param>
 ///
 /// <returns> True if it succeeds, false if it fails. </returns>
-DllImpExp bool CreateSilhouetteBoundaryGeometryMS (hmmSiluetBndyDat *bndyDat, EPTRARRAY &eptrs);
+DllImpExp bool CreateSilhouetteBoundaryGeometryMS (hmmSiluetBndyDat *bndyDat, EptrArray &eptrs);
 
