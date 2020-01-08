@@ -60,6 +60,7 @@ namespace APIToolsManaged.ViewModels
             BlankNonSolidsCommand = new DelegateCommand(OnBlankNonSolidsCommand);
             UnblankNonSolidsCommand = new DelegateCommand(OnUnblankNonSolidsCommand);
             SelectAllSolidsCommand = new DelegateCommand(OnSelectAllSolidsCommand);
+            UnselectAllCommand = new DelegateCommand(OnUnselectAllCommand);
             BreakAllSplinesCommand = new DelegateCommand(OnBreakAllSplinesCommand);
             CreateSilhouetteBoundaryCommand = new DelegateCommand(OnCreateSilhouetteBoundaryCommand);
             SelectSolidCommand = new DelegateCommand(OnSelectSolidCommand);
@@ -74,6 +75,8 @@ namespace APIToolsManaged.ViewModels
         public ICommand UnblankNonSolidsCommand { get; }
         
         public ICommand SelectAllSolidsCommand { get; }
+        
+        public ICommand UnselectAllCommand { get; }
 
         public ICommand BreakAllSplinesCommand { get; }
 
@@ -98,6 +101,11 @@ namespace APIToolsManaged.ViewModels
         private void OnSelectAllSolidsCommand(object parameter)
         {
             apiTools.SelectAllSolids();
+        }
+
+        private void OnUnselectAllCommand(object parameter)
+        {
+            apiTools.ClearSelection();
         }
 
         private void OnBreakAllSplinesCommand(object parameter)

@@ -28,6 +28,14 @@ namespace APIToolsManaged.Services
             }
         }
 
+        public int ClearSelection()
+        {
+            using (var apiTools = new APIToolsNative.APITools())
+            {
+                return apiTools.ClearSelection();
+            }
+        }
+
         public int BreakAllSplinesIntoLinesAndArcs()
         {
             using (var apiTools = new APIToolsNative.APITools())
@@ -40,7 +48,10 @@ namespace APIToolsManaged.Services
         {
             using (var apiTools = new APIToolsNative.APITools())
             {
-                return apiTools.CreateSilhouetteBoundary();
+                var numberOfBoundaryEntites = apiTools.CreateSilhouetteBoundary();
+                apiTools.ClearSelection();
+
+                return numberOfBoundaryEntites;
             }
         }
 

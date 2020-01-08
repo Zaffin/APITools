@@ -62,8 +62,18 @@
                 Content ="Select all solids"
                 Command="{Binding SelectAllSolidsCommand}"/>
 
-        <Button x:Name="BreakAllSplinesButton"
+        <Button x:Name="UnselectAllButton"
                 Grid.Row="4"
+                Grid.Column="1"
+                Grid.ColumnSpan="2"
+                VerticalAlignment="Stretch"
+                HorizontalAlignment="Stretch"
+                Margin="0,5,0,5"
+                Content ="Unselect all"
+                Command="{Binding UnselectAllCommand}"/>
+
+        <Button x:Name="BreakAllSplinesButton"
+                Grid.Row="5"
                 Grid.Column="1"
                 Grid.ColumnSpan="2"
                 VerticalAlignment="Stretch"
@@ -73,7 +83,7 @@
                 Command="{Binding BreakAllSplinesCommand}"/>
 
         <Button x:Name="CreateSilhouetteBoundaryButton"
-                Grid.Row="5"
+                Grid.Row="6"
                 Grid.Column="1"
                 Grid.ColumnSpan="2"
                 VerticalAlignment="Stretch"

@@ -10,6 +10,7 @@ namespace APIToolsNative
 
 		int BlankUnblankAllNonSolids(bool unblank);
 		int SelectAllSolids();
+		int ClearSelection();
 		//int GetSolidInfo(double a, double b, int c, int d);
 		//int CreateCurvesOnSolid(double a, double b, int c, int d);
 		int CreateSilhouetteBoundary();

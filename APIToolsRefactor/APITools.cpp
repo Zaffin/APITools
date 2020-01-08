@@ -25,8 +25,11 @@ int APIToolsNative::APITools::BlankUnblankAllNonSolids(bool unblank)
 
 			if (unblank)
 			{
-				sel_bit_turn_off(entityPointer->eptr, BLANK_BIT);
-				entityPointer->eptr->color = MC_RED;
+				if (!(~entityPointer->eptr->sel & BLANK_BIT))
+				{
+					sel_bit_turn_off(entityPointer->eptr, BLANK_BIT);
+					entityPointer->eptr->color = MC_RED;
+				}
 			}
 			else
 			{
@@ -71,15 +74,42 @@ int APIToolsNative::APITools::SelectAllSolids()
 	return numberOfSolidsSelected;
 }
 
+int APIToolsNative::APITools::ClearSelection()
+{
+	int numberSelectionsCleared = 0;
+
+	auto entityPointer = db_start;
+
+	while (entityPointer != nullptr)
+	{
+		numberSelectionsCleared++;
+
+		sel_bit_turn_off(entityPointer->eptr, SELECT_BIT);
+
+		write_ent_sel(entityPointer->eptr, entityPointer->eptr->eptr);
+
+		entityPointer = entityPointer->next;
+	}
+
+	if (numberSelectionsCleared)
+		repaint_graphics();
+
+	return numberSelectionsCleared;
+}
+
 int APIToolsNative::APITools::CreateSilhouetteBoundary()
 {
 	ent selectedSolid = {};
 
-	auto bodyID = sld_select_one_solid(L"Select a solid", &selectedSolid);
+	ClearSelection();
+
+	sld_select_one_solid(L"Select a solid", &selectedSolid);
+	clearprompt();
 
 	if (selectedSolid.eptr != nullptr)
 	{
 		sel_bit_turn_on(&selectedSolid, SELECT_BIT);
+		write_ent_sel(&selectedSolid, selectedSolid.eptr);
 
 		EptrArray boundaryEptrs;
 
@@ -107,6 +137,10 @@ int APIToolsNative::APITools::CreateSilhouetteBoundary()
 		boundarySettings.shiftedOrigin = false;
 
 		CreateSilhouetteBoundaryGeometryMS(&boundarySettings, boundaryEptrs);
+
+		sel_bit_turn_off(&selectedSolid, SELECT_BIT);
+		write_ent_sel(&selectedSolid, selectedSolid.eptr);
+		repaint_graphics();
 
 		return boundaryEptrs.GetSize();
 	}
@@ -147,6 +181,7 @@ array<System::Double>^ APIToolsNative::APITools::GetSolidExtents()
 	ent selectedSolid = {};
 
 	auto bodyID = sld_select_one_solid(L"Select a solid", &selectedSolid);
+	clearprompt();
 
 	auto extents = gcnew array<System::Double>(2);
 
